@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import FightersPage from '@/app/fighters/page';
 
-// 1. Criamos dados falsos idênticos ao que sua API retornaria
 const mockFighters = [
   {
     id: '1',
@@ -38,16 +37,13 @@ export default meta;
 
 type Story = StoryObj<typeof FightersPage>;
 
-// Cenário 1: Estado de Sucesso (Com a lista carregada)
 export const Default: Story = {
   parameters: {
-    // Se você estiver usando MSW para interceptar requisições HTTP:
     msw: {
       handlers: [],
     },
   },
   beforeEach: () => {
-    // Técnica simples para interceptar o fetch global se o seu service usar o fetch nativo
     const originalFetch = window.fetch;
     window.fetch = async () =>
       new Response(JSON.stringify(mockFighters), {
@@ -55,7 +51,6 @@ export const Default: Story = {
         headers: { 'Content-Type': 'application/json' },
       });
     
-    // Restaura o fetch original quando a story desmontar
     return () => {
       window.fetch = originalFetch;
     };

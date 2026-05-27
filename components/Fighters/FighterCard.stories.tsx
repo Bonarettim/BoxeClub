@@ -17,13 +17,14 @@ import type {
   export const Default: Story = {
     args: {
       fighter: {
+        id: '1',
         firstName: 'Conor',
         lastName: 'McGregor',
         image:
           'https://randomuser.me/api/portraits/men/32.jpg',
         email: 'conor@ufc.com',
         address: {
-          cidade: 'Dublin',
+          city: 'Dublin',
         },
       },
     },
