@@ -33,7 +33,7 @@ Interface desenvolvida para simular uma plataforma moderna de academia de boxe, 
 1. Clone o repositório:
 
 ```bash
-git clone <url-do-repositorio>
+git clone <https://github.com/Bonarettim/BoxeClub.git>
 ```
 
 2. Entre na pasta:
