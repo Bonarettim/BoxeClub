@@ -1,36 +1,190 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🥊 Frontend: Boxing Hub
 
-## Getting Started
+Interface desenvolvida para simular uma plataforma moderna de academia de boxe, utilizando Next.js, Material UI e boas práticas de componentização.
 
-First, run the development server:
+## 🚀 Tecnologias
+
+* **Framework:** Next.js 14
+* **Linguagem:** TypeScript
+* **Biblioteca UI:** Material UI (MUI)
+* **Gerenciamento de Formulários:** Formik
+* **Validação:** Yup
+* **Consumo de API:** Axios
+* **Testes:** Jest + Testing Library
+* **Documentação de Componentes:** Storybook
+* **Estilização:** Emotion / SX Pattern (MUI)
+
+---
+
+## 🛠️ Critérios de Avaliação
+
+* **Componentização:** Estrutura modular utilizando Header, Footer, Cards e páginas reutilizáveis.
+* **Consumo de API:** Integração estruturada utilizando camada de services.
+* **Responsividade:** Interface adaptada para desktop e mobile utilizando Grid e breakpoints do MUI.
+* **TypeScript:** Tipagem forte para componentes, props e consumo de dados.
+* **UX/UI:** Layout moderno, feedback visual de loading e validações de formulário.
+* **Testes:** Cobertura de renderização, validação e comportamento do formulário.
+* **Storybook:** Documentação visual e isolamento de componentes/páginas.
+
+---
+
+## ⚙️ Como rodar o projeto
+
+1. Clone o repositório:
+
+```bash
+git clone <url-do-repositorio>
+```
+
+2. Entre na pasta:
+
+```bash
+cd boxing-hub
+```
+
+3. Instale as dependências:
+
+```bash
+npm install
+```
+
+4. Rode a aplicação:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Aplicação disponível em:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📚 Storybook
 
-To learn more about Next.js, take a look at the following resources:
+Rodar ambiente Storybook:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run storybook
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Storybook disponível em:
 
-## Deploy on Vercel
+```bash
+http://localhost:6006
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Gerar build do Storybook:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build-storybook
+```
+
+---
+
+## 🧪 Testes
+
+Rodar testes:
+
+```bash
+npm run test
+```
+
+Rodar testes em watch mode:
+
+```bash
+npm run test:watch
+```
+
+---
+
+## 📝 Relatório de Desenvolvimento
+
+### O que foi feito:
+
+- Criação de layout global utilizando App Router do Next.js.
+- Desenvolvimento de páginas institucionais responsivas.
+- Integração com API para listagem dinâmica de lutadores.
+- Implementação de loading state utilizando CircularProgress.
+- Criação de componentes reutilizáveis com Material UI.
+- Implementação de formulário com Formik e validação Yup.
+- Estruturação de testes unitários com Jest.
+- Configuração de Storybook para documentação de páginas e componentes.
+- Organização de services e tipagens separadas.
+
+---
+
+## 📂 Estrutura do Projeto
+
+```bash
+src/
+ ├── app/
+ ├── components/
+ ├── services/
+ ├── stories/
+ ├── tests/
+ ├── types/
+ └── utils/
+```
+
+---
+
+## 📌 Funcionalidades
+
+### Home
+- Hero section moderna
+- Grid responsivo de academia
+- Footer reutilizável
+
+### Fighters
+- Consumo de API
+- Renderização dinâmica
+- Loading state
+- Cards reutilizáveis
+
+### Contact
+- Formulário validado
+- Integração Formik + Yup
+- Reset de formulário
+- Google Maps embed
+
+---
+
+## 📈 Plano de Melhorias (Roadmap)
+
+- [ ] Integração real com backend.
+- [ ] Toast notifications ao invés de alert.
+- [ ] Skeleton loading para melhor UX.
+- [ ] Dark mode.
+- [ ] Internacionalização (i18n).
+- [ ] Cache de requisições.
+- [ ] Implementação de autenticação.
+- [ ] Melhoria de acessibilidade (A11Y).
+
+---
+
+## 🧹 Dependências para Revisão
+
+O projeto atualmente utiliza Jest como framework principal de testes.
+
+Dependências que podem ser removidas caso Vitest não esteja sendo utilizado:
+
+```bash
+npm remove vite @vitejs/plugin-react @vitest/browser-playwright @storybook/addon-vitest
+```
+
+Também validar necessidade de:
+
+```bash
+@tailwindcss/postcss
+```
+
+pois o projeto utiliza Material UI como principal biblioteca de UI.
+
+---
+
+## 👨‍💻 Autor
+
+Matheus Bonaretti Simões
