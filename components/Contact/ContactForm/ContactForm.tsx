@@ -86,7 +86,7 @@ export default function ContactForm() {
                   mt: 3,
                 }}
               >
-                Envie
+                Enviar
               </Button>
             </form>
           )}

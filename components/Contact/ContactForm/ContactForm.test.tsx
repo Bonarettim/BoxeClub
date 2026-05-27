@@ -43,7 +43,7 @@ describe("ContactForm Component", () => {
     render(<ContactForm />);
 
     const submitButton = screen.getByRole("button", {
-      name: /envie/i,
+      name: /enviar/i,
     });
 
     fireEvent.click(submitButton);
@@ -68,7 +68,7 @@ describe("ContactForm Component", () => {
     });
 
     const submitButton = screen.getByRole("button", {
-      name: /envie/i,
+      name: /enviar/i,
     });
 
     fireEvent.click(submitButton);
@@ -105,7 +105,7 @@ describe("ContactForm Component", () => {
     });
 
     const submitButton = screen.getByRole("button", {
-      name: /envie/i,
+      name: /enviar/i,
     });
 
     fireEvent.click(submitButton);
