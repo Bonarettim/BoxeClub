@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -13,8 +14,31 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 
+const navItems = [
+  {
+    label: "Início",
+    href: "/",
+  },
+  {
+    label: "Lutadores",
+    href: "/fighters",
+  },
+  {
+    label: "Contato",
+    href: "/contact",
+  },
+];
+
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
+
+  function handleOpenMenu() {
+    setOpenMenu(true);
+  }
+
+  function handleCloseMenu() {
+    setOpenMenu(false);
+  }
 
   return (
     <AppBar position="fixed">
@@ -27,13 +51,23 @@ export default function Header() {
         }}
       >
         <Box
+          component={Link}
+          href="/"
           sx={{
             display: "flex",
             alignItems: "center",
             gap: 1,
+            textDecoration: "none",
+            color: "inherit",
           }}
+          aria-label="Ir para a página inicial"
         >
-          <Image src="/logo.png" alt="Boxing Hub Logo" width={50} height={50} />
+          <Image
+            src="/logo.png"
+            alt="Boxing Hub Logo"
+            width={50}
+            height={50}
+          />
 
           <Typography
             variant="h6"
@@ -46,6 +80,8 @@ export default function Header() {
         </Box>
 
         <Box
+          component="nav"
+          aria-label="Navegação principal"
           sx={{
             display: {
               xs: "none",
@@ -54,21 +90,22 @@ export default function Header() {
             gap: 2,
           }}
         >
-          <Button color="inherit" component={Link} href="/">
-            Inicio
-          </Button>
-
-          <Button color="inherit" component={Link} href="/fighters">
-            Lutadores
-          </Button>
-
-          <Button color="inherit" component={Link} href="/contact">
-            Contatos
-          </Button>
+          {navItems.map((item) => (
+            <Button
+              key={item.href}
+              color="inherit"
+              component={Link}
+              href={item.href}
+            >
+              {item.label}
+            </Button>
+          ))}
         </Box>
+
         <IconButton
           color="inherit"
-          onClick={() => setOpenMenu(true)}
+          aria-label="Abrir menu de navegação"
+          onClick={handleOpenMenu}
           sx={{
             display: {
               xs: "flex",
@@ -79,10 +116,11 @@ export default function Header() {
           <MenuIcon />
         </IconButton>
       </Toolbar>
+
       <Drawer
         anchor="right"
         open={openMenu}
-        onClose={() => setOpenMenu(false)}
+        onClose={handleCloseMenu}
         PaperProps={{
           sx: {
             backgroundColor: "#0d0d0d",
@@ -91,6 +129,8 @@ export default function Header() {
         }}
       >
         <Box
+          component="nav"
+          aria-label="Navegação mobile"
           sx={{
             width: 250,
             p: 3,
@@ -101,44 +141,21 @@ export default function Header() {
             gap: 2,
           }}
         >
-          <Button
-            component={Link}
-            href="/"
-            onClick={() => setOpenMenu(false)}
-            sx={{
-              color: "#fff",
-              fontWeight: "bold",
-              justifyContent: "flex-start",
-            }}
-          >
-            Inicio
-          </Button>
-
-          <Button
-            component={Link}
-            href="/fighters"
-            onClick={() => setOpenMenu(false)}
-            sx={{
-              color: "#fff",
-              fontWeight: "bold",
-              justifyContent: "flex-start",
-            }}
-          >
-            LUTADORES
-          </Button>
-
-          <Button
-            component={Link}
-            href="/contact"
-            onClick={() => setOpenMenu(false)}
-            sx={{
-              color: "#fff",
-              fontWeight: "bold",
-              justifyContent: "flex-start",
-            }}
-          >
-            CONTATOS
-          </Button>
+          {navItems.map((item) => (
+            <Button
+              key={item.href}
+              component={Link}
+              href={item.href}
+              onClick={handleCloseMenu}
+              sx={{
+                color: "#fff",
+                fontWeight: "bold",
+                justifyContent: "flex-start",
+              }}
+            >
+              {item.label}
+            </Button>
+          ))}
         </Box>
       </Drawer>
     </AppBar>
