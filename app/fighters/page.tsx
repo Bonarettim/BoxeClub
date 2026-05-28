@@ -5,13 +5,13 @@ import {
   Container,
   Typography,
   Grid,
-  Paper,
-  CircularProgress,
+  Paper
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import FighterCard from "@/components/Fighters/FighterCard";
 import { getFighters } from "@/services/fighters.service";
 import { Fighter } from "@/types/fighter";
+import Loading from "@/components/Loading/Loading";
 
 export default function FightersPage() {
   const [fighters, setFighters] = useState<Fighter[]>([]);
@@ -31,7 +31,7 @@ export default function FightersPage() {
         setError(error.message);
         return;
       }
-    
+
       setError("Ocorreu um erro ao carregar os lutadores.");
     } finally {
       setLoading(false);
@@ -147,20 +147,7 @@ export default function FightersPage() {
         <Grid container spacing={4}>
           {loading && (
             <Grid item xs={12}>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  py: 10,
-                }}
-              >
-                <CircularProgress
-                  sx={{
-                    color: "#000",
-                  }}
-                />
-              </Box>
+              <Loading />
             </Grid>
           )}
 

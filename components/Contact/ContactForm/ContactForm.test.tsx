@@ -26,7 +26,7 @@ describe("ContactForm Component", () => {
     render(<ContactForm />);
 
     expect(
-      screen.getByLabelText("Name")
+      screen.getByLabelText("Nome")
     ).toBeInTheDocument();
 
     expect(
@@ -86,7 +86,7 @@ describe("ContactForm Component", () => {
 
     render(<ContactForm />);
 
-    fireEvent.change(screen.getByLabelText("Name"), {
+    fireEvent.change(screen.getByLabelText("Nome"), {
       target: {
         value: "Matheus",
       },

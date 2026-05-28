@@ -21,7 +21,7 @@ export default function Loading() {
       <CircularProgress color="error" />
 
       <Typography variant="h6">
-        Carregando Boxing Hub...
+        Carregando Lutadores Hub...
       </Typography>
     </Box>
   );
