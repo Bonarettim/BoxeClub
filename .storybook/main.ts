@@ -10,10 +10,9 @@ const config: StorybookConfig = {
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
     "@storybook/addon-mcp"
-    // Removeu o addon-vitest temporariamente se você usa Jest
   ],
   framework: {
-    name: "@storybook/nextjs", // Garante compatibilidade total com a pasta app/
+    name: "@storybook/nextjs", 
     options: {},
   },
   staticDirs: [
