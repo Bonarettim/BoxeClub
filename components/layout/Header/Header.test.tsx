@@ -12,11 +12,16 @@ import Header from "./Header";
 
 // MOCK NEXT/LINK
 jest.mock("next/link", () => {
-  const React = require("react");
+  const ReactTyped = jest.requireActual<typeof import("react")>("react");
 
-  return React.forwardRef(
-    ({ children, href }: any, ref: any) => {
-      return React.createElement(
+  type MockLinkProps = {
+    children: React.ReactNode;
+    href: string;
+  };
+
+  const MockLink = ReactTyped.forwardRef<HTMLAnchorElement, MockLinkProps>(
+    ({ children, href }, ref) => {
+      return ReactTyped.createElement(
         "a",
         {
           href,
@@ -26,6 +31,10 @@ jest.mock("next/link", () => {
       );
     }
   );
+
+  MockLink.displayName = "MockLink";
+
+  return MockLink;
 });
 
 // MOCK NEXT/IMAGE
