@@ -14,18 +14,20 @@ import Header from "./Header";
 jest.mock("next/link", () => {
   const ReactTyped = jest.requireActual<typeof import("react")>("react");
 
-  type MockLinkProps = {
-    children: React.ReactNode;
-    href: string;
-  };
+  type MockLinkProps =
+    import("react").AnchorHTMLAttributes<HTMLAnchorElement> & {
+      href: string;
+      children: import("react").ReactNode;
+    };
 
   const MockLink = ReactTyped.forwardRef<HTMLAnchorElement, MockLinkProps>(
-    ({ children, href }, ref) => {
+    ({ children, href, ...props }, ref) => {
       return ReactTyped.createElement(
         "a",
         {
           href,
           ref,
+          ...props,
         },
         children
       );
@@ -71,47 +73,47 @@ describe("Header Component", () => {
     ).toBeInTheDocument();
   });
 
-  it("should render navigation links", () => {
+  it("should render desktop navigation links", () => {
     render(<Header />);
 
-    const homeLinks =
-      screen.getAllByRole("link", {
-        name: /inicio/i,
-      });
+    expect(
+      screen.getByRole("link", {
+        name: /ir para a página inicial/i,
+      })
+    ).toHaveAttribute("href", "/");
 
-    expect(homeLinks[0]).toHaveAttribute(
-      "href",
-      "/"
-    );
+    expect(
+      screen.getByRole("link", {
+        name: /lutadores/i,
+      })
+    ).toHaveAttribute("href", "/fighters");
+
+    expect(
+      screen.getByRole("link", {
+        name: /contato/i,
+      })
+    ).toHaveAttribute("href", "/contact");
   });
 
   it("should open mobile menu", async () => {
-    const { container } = render(
-      <Header />
-    );
+    render(<Header />);
 
-    const menuIcon =
-      container.querySelector(
-        'svg[data-testid="MenuIcon"]'
-      );
+    const menuButton = screen.getByRole("button", {
+      name: /abrir menu de navegação/i,
+    });
 
-    const menuButton =
-      menuIcon?.closest("button");
+    fireEvent.click(menuButton);
 
-    expect(menuButton).toBeInTheDocument();
+    const mobileNavigation = await screen.findByRole("navigation", {
+      name: /navegação mobile/i,
+    });
 
-    fireEvent.click(menuButton!);
-
-    const drawerLinks =
-      await screen.findAllByRole(
-        "link",
-        {
-          name: /inicio/i,
-        }
-      );
+    expect(mobileNavigation).toBeInTheDocument();
 
     expect(
-      drawerLinks[0]
+      screen.getAllByRole("link", {
+        name: /lutadores/i,
+      })[0]
     ).toBeInTheDocument();
   });
 });
