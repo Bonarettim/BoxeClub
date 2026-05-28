@@ -1,13 +1,24 @@
 import axios from 'axios';
+import { Fighter } from '@/types/fighter';
 
-export async function getFighters() {
-  const response = await axios.get(
-    'https://dummyjson.com/users'
-  );
+type GetFightersResponse = {
+  users: Fighter[];
+};
 
-  await new Promise((resolve) =>
-    setTimeout(resolve, 2000)
-  );
+export async function getFighters(): Promise<Fighter[]> {
+  try {
+    const response = await axios.get<GetFightersResponse>(
+      'https://dummyjson.com/users'
+    );
 
-  return response.data.users;
+    await new Promise((resolve) =>
+      setTimeout(resolve, 2000)
+    );
+
+    return response.data.users;
+  } catch (error) {
+    console.error('Error fetching fighters:', error);
+
+    throw new Error('Não foi possível carregar os lutadores.');
+  }
 }

@@ -16,14 +16,18 @@ import { Fighter } from "@/types/fighter";
 export default function FightersPage() {
   const [fighters, setFighters] = useState<Fighter[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   async function loadFighters() {
     try {
       setLoading(true);
+      setError(null);
 
       const data = await getFighters();
 
       setFighters(data);
+    } catch (error) {
+      setError("Não foi possível carregar os lutadores.");
     } finally {
       setLoading(false);
     }
@@ -136,7 +140,7 @@ export default function FightersPage() {
 
       <Container sx={{ py: 10 }}>
         <Grid container spacing={4}>
-          {loading ? (
+          {loading && (
             <Grid item xs={12}>
               <Box
                 sx={{
@@ -153,13 +157,31 @@ export default function FightersPage() {
                 />
               </Box>
             </Grid>
-          ) : (
+          )}
+
+          {!loading && error && (
+            <Grid item xs={12}>
+              <Typography color="error" textAlign="center">
+                {error}
+              </Typography>
+            </Grid>
+          )}
+
+          {!loading && !error && fighters.length === 0 && (
+            <Grid item xs={12}>
+              <Typography textAlign="center">
+                Nenhum lutador encontrado.
+              </Typography>
+            </Grid>
+          )}
+
+          {!loading &&
+            !error &&
             fighters.map((fighter) => (
               <Grid item xs={12} md={4} key={fighter.id}>
                 <FighterCard fighter={fighter} />
               </Grid>
-            ))
-          )}
+            ))}
         </Grid>
       </Container>
     </>
