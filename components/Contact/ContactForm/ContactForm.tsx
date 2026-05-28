@@ -44,7 +44,7 @@ export default function ContactForm() {
             <form onSubmit={handleSubmit}>
               <TextField
                 fullWidth
-                label="Name"
+                label="Nome"
                 name="name"
                 margin="normal"
                 value={values.name}
