@@ -27,7 +27,12 @@ export default function FightersPage() {
 
       setFighters(data);
     } catch (error) {
-      setError("Não foi possível carregar os lutadores.");
+      if (error instanceof Error) {
+        setError(error.message);
+        return;
+      }
+    
+      setError("Ocorreu um erro ao carregar os lutadores.");
     } finally {
       setLoading(false);
     }

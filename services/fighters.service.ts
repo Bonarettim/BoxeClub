@@ -8,7 +8,7 @@ type GetFightersResponse = {
 export async function getFighters(): Promise<Fighter[]> {
   try {
     const response = await axios.get<GetFightersResponse>(
-      'https://dummyjson.com/users'
+      'https://dummyjson.com/users/'
     );
 
     await new Promise((resolve) =>
@@ -17,8 +17,6 @@ export async function getFighters(): Promise<Fighter[]> {
 
     return response.data.users;
   } catch (error) {
-    console.error('Error fetching fighters:', error);
-
     throw new Error('Não foi possível carregar os lutadores.');
   }
 }
