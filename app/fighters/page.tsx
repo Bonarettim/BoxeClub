@@ -134,7 +134,6 @@ export default function FightersPage() {
         </Container>
       </Box>
 
-      {/* LIST */}
       <Container sx={{ py: 10 }}>
         <Grid container spacing={4}>
           {loading ? (
